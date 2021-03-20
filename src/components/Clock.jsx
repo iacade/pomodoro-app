@@ -1,6 +1,7 @@
 import Text from "../text/Text";
 import { calcArcAngles, describeArc } from "../helpers/geometry";
 import { format, withZeroLead } from "../helpers/time";
+import useTransition from "../hooks/useTransition";
 
 function Clock(props) {
     const {
@@ -8,10 +9,11 @@ function Clock(props) {
         end: endAngle
     } = calcArcAngles(props.elapsed, props.total);
 
+    const value = useTransition(endAngle);
     const left = format(props.total - props.elapsed);
     const leftMin = withZeroLead(left.minutes);
     const leftSec = withZeroLead(left.seconds);
-    const arc = describeArc(180, 180, 165, startAngle, endAngle);
+    const arc = describeArc(180, 180, 165, startAngle, value);
 
     return (
         <section className="clock">

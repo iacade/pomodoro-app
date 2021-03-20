@@ -5,7 +5,7 @@ const initial = {
     activeTab: "pomodoro",
     times: {
         pomodoro: minutes(25),
-        short: minutes(.25),
+        short: minutes(.1),
         long: minutes(15)
     },
     elapsed: 0,
@@ -21,9 +21,14 @@ const reducers = {
         if (state.activeTab === action.value) {
             return false;
         }
+        if (state.clockState === "run") {
+            return false;
+        }
 
         return {
-            activeTab: action.value
+            activeTab: action.value,
+            clockState: "init",
+            elapsed: 0
         };
     },
     "state": (state, action) => {

@@ -29,32 +29,32 @@ function timeToString(seconds) {
 function App() {
     const [ state, dispatch ] = useReducer(reducer, initial);
     const contextProvider = { state, dispatch };
-    const className = classes({
-        "app": true,
-        [`app--${ state.settings.font }`]: state.settings.font,
-        [`app--${ state.settings.color }`]: state.settings.color
-    });
     const totalSeconds = state.times[state.activeTab];
     const elapsedSeconds = state.elapsed;
-    const actionHandlers = {
-        init: () => {
-            dispatch({ type: "state", value: "run" });
-            Timer.run(() => dispatch({ type: "tick" }));
-        },
-        run: () => {
-            dispatch({ type: "state", value: "stop" });
-            Timer.stop();
-        },
-        stop: () => {
-            dispatch({ type: "state", value: "run" });
-            Timer.run(() => dispatch({ type: "tick" }));
-        },
-        finish: () => {
-            dispatch({ type: "reset" });
-            Timer.run(() => dispatch({ type: "tick" }));
+    const actionRun = () => {
+        dispatch({ type: "state", value: "run" });
+        Timer.run(() => dispatch({ type: "tick" }));
+    };
+    const actionStop = () => {
+        dispatch({ type: "state", value: "stop" });
+        Timer.stop();
+    };
+    const actionReset = () => {
+        dispatch({ type: "reset" });
+        Timer.run(() => dispatch({ type: "tick" }));
+    };
+    const handleClockAction = () => {
+        switch (state.clockState) {
+            case "run":
+                actionStop();
+                break;
+            case "finish":
+                actionReset();
+                break;
+            default:
+                actionRun();
         }
     };
-    const handleClockAction = () => actionHandlers[state.clockState]?.();
 
     useEffect(() => {
         let title = null;
@@ -67,7 +67,7 @@ function App() {
                 title = "⏸ " + timeToString(totalSeconds - elapsedSeconds) + " | Pomodoro";
                 break;
             case "finish":
-                title = "⏳ B U Z Z Z Z | Pomodoro";
+                title = "⏳ B U Z Z Z | Pomodoro";
                 break;
             default:
                 title = "Pomodoro";
@@ -75,6 +75,12 @@ function App() {
         }
 
         document.title = title;
+    });
+
+    const className = classes({
+        "app": true,
+        [`app--${ state.settings.font }`]: state.settings.font,
+        [`app--${ state.settings.color }`]: state.settings.color
     });
 
     return (

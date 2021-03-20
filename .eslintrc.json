@@ -8,5 +8,11 @@
         "quotes": [ "error", "double" ],
         "eol-last": [ "error", "always" ],
         "default-case": "off"
-    }
+    },
+    "overrides": [{
+        "files": [ "./src/hooks/useTransition.js" ],
+        "rules": {
+            "react-hooks/exhaustive-deps": "off"
+        }
+    }]
 }
