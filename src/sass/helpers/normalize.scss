@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button, input, textarea {
+    font: inherit;
+    color: inherit;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+h1 {
+    font-size: 100px;
+    line-height: 100px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    // fix last letter spacing
+    margin-right: -15px;
+}
+
+.relative {
+    position: relative;
+}
