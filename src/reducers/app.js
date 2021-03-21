@@ -3,6 +3,7 @@ import Timer from "../helpers/timer";
 
 const initial = {
     activeTab: "pomodoro",
+    shakeAnim: false,
     times: {
         pomodoro: minToSec(25),
         short: minToSec(1),
@@ -22,7 +23,9 @@ const reducers = {
             return false;
         }
         if (state.clockState === "run") {
-            return false;
+            return {
+                shakeAnim: true
+            };
         }
 
         return {
@@ -100,6 +103,15 @@ const reducers = {
                 ...state.settings,
                 color: value
             }
+        };
+    },
+    "clear-shake-anim": (state) => {
+        if (!state.shakeAnim) {
+            return false;
+        }
+
+        return {
+            shakeAnim: false
         };
     }
 };

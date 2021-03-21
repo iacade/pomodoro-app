@@ -2,6 +2,7 @@ import Text from "../text/Text";
 import { calcArcAngles, describeArc } from "../helpers/geometry";
 import { format, withZeroLead } from "../helpers/time";
 import useTransition from "../hooks/useTransition";
+import { classes } from "../helpers/classes";
 
 const CLOCK_ARC = {
     CENTER_X: 180,
@@ -45,6 +46,10 @@ function Clock(props) {
     const leftSec = withZeroLead(left.seconds);
     const arc = describeArc(CLOCK_ARC.CENTER_X, CLOCK_ARC.CENTER_Y,
         CLOCK_ARC.RADIUS, startAngle, value);
+    
+    const textClassName = classes({
+        "shake-anim": props.shakeAnim
+    });
 
     return (
         <section className="clock">
@@ -59,7 +64,8 @@ function Clock(props) {
                     { leftMin + ":" + leftSec }
                 </h1>
                 <button className="clock__state" onClick={ props.onAction }>
-                    <h3>{ Text.CLOCK_BUTTON[props.state] }</h3>
+                    <h3 className={ textClassName }
+                        onAnimationEnd={ props.onEndShake }>{ Text.CLOCK_BUTTON[props.state] }</h3>
                 </button>
             </div>
         </section>

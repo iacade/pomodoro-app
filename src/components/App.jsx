@@ -104,7 +104,9 @@ function App() {
                     total={ totalSeconds }
                     elapsed={ elapsedSeconds }
                     state={ state.clockState }
-                    onAction={ handleClockAction } />
+                    onAction={ handleClockAction }
+                    shakeAnim={ state.shakeAnim }
+                    onEndShake={ () => dispatch({ type: "clear-shake-anim" }) } />
 
                 <Button icon={ true } onClick={ handleOpenModal }>
                     <Use icon="settings" width="28" height="28" />

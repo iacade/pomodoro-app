@@ -19,7 +19,7 @@ function TabsItem(props) {
 
 function Tabs(props) {
     const sectionRef = useRef(null);
-    const { dispatch } = useContext(AppContext);
+    const { state, dispatch } = useContext(AppContext);
     const [ maskLeft, setMaskLeft ] = useState(0);
     const [ maskWidth, setMaskWidth ] = useState(0);
 
@@ -49,6 +49,14 @@ function Tabs(props) {
         }
     };
 
+    const handleAnimationEnd = () => dispatch({
+        type: "clear-shake-anim"
+    });
+
+    const maskClassName = classes({
+        "tabs-active-mask": true,
+        "tabs-active-mask--shaked": state.activeTabShaked
+    });
     const maskStyle = {
         left: maskLeft,
         width: maskWidth
@@ -56,7 +64,9 @@ function Tabs(props) {
 
     return (
         <section ref={ sectionRef } className="relative">
-            <span style={ maskStyle } className="tabs-active-mask"></span>
+            <span style={ maskStyle }
+                className={ maskClassName }
+                onAnimationEnd={ handleAnimationEnd }></span>
             <ul className="tabs" onClick={ handleClick }>
                 { props.items.map(({ key, text }) =>
                     <TabsItem key={ key }
