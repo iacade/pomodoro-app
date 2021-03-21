@@ -1,0 +1,43 @@
+.modal {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    background: rgba(10, 12, 28, .5);
+    transition: 150ms;
+
+    visibility: hidden;
+    opacity: 0;
+
+    &__content {
+        cursor: default;
+        color: var(--c-dark);
+        background-color: var(--c-white);
+        border-radius: 25px;
+
+        width: 540px;
+        max-width: 100%;
+
+        transform: translateY(20px);
+        transition: 150ms;
+    }
+
+    &--opened {
+        transition: 300ms;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &--opened &__content {
+        transition: 300ms;
+        transform: none;
+    }
+}

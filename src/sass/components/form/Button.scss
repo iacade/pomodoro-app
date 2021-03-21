@@ -1,0 +1,12 @@
+.x-button--icon {
+    opacity: .5;
+    transition: 100ms opacity;
+
+    &.light {
+        opacity: .25;
+    }
+
+    &:hover, &:focus {
+        opacity: 1;
+    }
+}

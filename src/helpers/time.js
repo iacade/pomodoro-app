@@ -1,8 +1,12 @@
 const SEC_IN_MIN = 60;
 const SEC_IN_HOUR = 3600;
 
-export function minutes(value) {
+export function minToSec(value) {
     return value * SEC_IN_MIN;
+}
+
+export function secToMin(value) {
+    return value / SEC_IN_MIN;
 }
 
 export function format(secondsCount) {

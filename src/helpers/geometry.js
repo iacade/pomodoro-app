@@ -16,9 +16,8 @@ function polarToCartesian(centerX, centerY, radius, angle) {
 export function calcArcAngles(elapsed, total) {
     let elapsedPercent = elapsed / total;
 
-    if (elapsedPercent === 0 || elapsedPercent === 1) {
+    if (elapsedPercent === 0) {
         // If no time elapsed
-        // or if time totally elapsed
         // we gonna render full arc
         elapsedPercent = MIN_PERCENT_ELAPSED;
     }

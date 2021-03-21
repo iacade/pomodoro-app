@@ -1,0 +1,84 @@
+.x-radio {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--c-gray);
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 100ms;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    &--checked {
+        color: var(--c-white);
+        background-color: var(--c-blue);
+    }
+
+    &__border {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px solid var(--c-gray);
+
+        opacity: 0;
+        transform: scale(1.15);
+        visibility: hidden;
+        transition: 100ms;
+    }
+
+    &:hover &__border,
+    &--focus &__border {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.25);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__tick {
+        display: block;
+        width: 13px;
+        height: 7px;
+        border-left: 2px solid var(--c-dark);
+        border-bottom: 2px solid var(--c-dark);
+        transform: scale(.5) translateY(-2px) rotate(-45deg);
+        
+        opacity: 0;
+        visibility: hidden;
+        transition: 100ms;
+    }
+
+    &--checked &__tick {
+        transition: 200ms;
+        transform: translateY(-2px) rotate(-45deg);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.x-radio.tomato {
+    background-color: var(--c-tomato);
+}
+
+.x-radio.cyan {
+    background-color: var(--c-cyan);
+}
+
+.x-radio.purple {
+    background-color: var(--c-purple);
+}

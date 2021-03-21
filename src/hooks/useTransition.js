@@ -19,6 +19,10 @@ export default function useTransition(nextValue, duration) {
     }, []);
 
     useEffect(() => {
+        animation.duration = duration;
+    }, [ duration ]);
+
+    useEffect(() => {
         animation.play(nextValue);
     }, [ nextValue ]);
 

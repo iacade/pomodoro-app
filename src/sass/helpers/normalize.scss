@@ -26,7 +26,7 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 28px;
 }
 
 h3 {
@@ -34,10 +34,35 @@ h3 {
     line-height: 16px;
     text-transform: uppercase;
     letter-spacing: 15px;
-    // fix last letter spacing
-    margin-right: -15px;
+    margin-right: -15px; // fix last letter spacing
 }
+
+h4 {
+    font-size: 13px;
+    line-height: 13px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-right: -5px;
+}
+
+// helpers classes
 
 .relative {
     position: relative;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+.mr-4 {
+    margin-right: 20px;
+}
+
+.mr-3 {
+    margin-right: 15px;
 }

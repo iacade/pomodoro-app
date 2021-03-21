@@ -1,0 +1,21 @@
+.settings {
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 40px;
+        border-bottom: 1px solid #E3E1E1;
+    }
+
+    &__content {
+        padding: 0 40px 30px 40px;
+    }
+
+    &__item {
+        padding: 25px 0;
+        border-bottom: 1px solid rgba(22, 25, 50, .1);
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}

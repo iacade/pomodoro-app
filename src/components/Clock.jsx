@@ -3,24 +3,55 @@ import { calcArcAngles, describeArc } from "../helpers/geometry";
 import { format, withZeroLead } from "../helpers/time";
 import useTransition from "../hooks/useTransition";
 
+const CLOCK_ARC = {
+    CENTER_X: 180,
+    CENTER_Y: 180,
+    RADIUS: 165,
+    STROKE_WIDTH: 10
+};
+
+function getElapsedForAnim(props) {
+    if (props.state === "run") {
+        return Math.min(props.total, props.elapsed + 1);
+    }
+    else if (props.state === "finish") {
+        return 0;
+    }
+
+    return props.elapsed;
+}
+
+function getTransitionDuration(props) {
+    switch (props.state) {
+        case "finish":
+        case "init":
+            return 200;
+        case "stop":
+            return 100;
+        default:
+            return 1000;
+    }
+}
+
 function Clock(props) {
     const {
         start: startAngle,
         end: endAngle
-    } = calcArcAngles(props.elapsed, props.total);
+    } = calcArcAngles(getElapsedForAnim(props), props.total);
 
-    const value = useTransition(endAngle);
+    const value = useTransition(endAngle, getTransitionDuration(props));
     const left = format(props.total - props.elapsed);
     const leftMin = withZeroLead(left.minutes);
     const leftSec = withZeroLead(left.seconds);
-    const arc = describeArc(180, 180, 165, startAngle, value);
+    const arc = describeArc(CLOCK_ARC.CENTER_X, CLOCK_ARC.CENTER_Y,
+        CLOCK_ARC.RADIUS, startAngle, value);
 
     return (
         <section className="clock">
             <div className="clock__content">
                 <span className="clock__arc theme-color">
                     <svg viewBox="0 0 360 360">
-                        <path d={ arc } fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round">
+                        <path d={ arc } fill="none" stroke="currentColor" strokeWidth={ CLOCK_ARC.STROKE_WIDTH } strokeLinecap="round">
                         </path>
                     </svg>
                 </span>

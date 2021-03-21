@@ -14,4 +14,10 @@ export default new class Text {
         "stop": "start",
         "finish": "restart"
     }
+
+    // Settings
+    SETTINGS_TITLE = "Settings"
+    SETTINGS_TIME = "time (minutes)"
+    SETTINGS_FONT = "font"
+    SETTINGS_COLOR = "color"
 }();

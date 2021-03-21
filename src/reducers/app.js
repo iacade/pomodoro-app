@@ -1,12 +1,12 @@
-import { minutes } from "../helpers/time";
+import { minToSec } from "../helpers/time";
 import Timer from "../helpers/timer";
 
 const initial = {
     activeTab: "pomodoro",
     times: {
-        pomodoro: minutes(25),
-        short: minutes(.1),
-        long: minutes(15)
+        pomodoro: minToSec(25),
+        short: minToSec(1),
+        long: minToSec(15)
     },
     elapsed: 0,
     clockState: "init", // one of: init, run, stop, finish
@@ -59,7 +59,49 @@ const reducers = {
     "reset": () => ({
         elapsed: 0,
         clockState: "run"
-    })
+    }),
+    "settings-time-change": (state, action) => {
+        const { name, value } = action;
+
+        if (!(name in state.times) || state.times[name] === value) {
+            return false;
+        }
+
+        return {
+            times: {
+                ...state.times,
+                [name]: value
+            }
+        };
+    },
+    "settings-font-change": (state, action) => {
+        const { value } = action;
+
+        if (state.settings.font === value) {
+            return false;
+        }
+
+        return {
+            settings: {
+                ...state.settings,
+                font: value
+            }
+        };
+    },
+    "settings-color-change": (state, action) => {
+        const { value } = action;
+
+        if (state.settings.color === value) {
+            return false;
+        }
+
+        return {
+            settings: {
+                ...state.settings,
+                color: value
+            }
+        };
+    }
 };
 
 function reducer(state, action) {

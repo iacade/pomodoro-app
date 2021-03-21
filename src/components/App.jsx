@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Button from "./form/Button";
 import Tabs from "./Tabs";
 import Clock from "./Clock";
@@ -8,6 +8,10 @@ import Timer from "../helpers/timer";
 import { initial, reducer } from "../reducers/app";
 import { classes } from "../helpers/classes";
 import { format, withZeroLead } from "../helpers/time";
+import SvgSource from "./svg/Source";
+import Use from "./svg/Use";
+import Modal from "./Modal";
+import Settings from "./Settings";
 
 const tabsItems = [{
     key: "pomodoro",
@@ -28,6 +32,7 @@ function timeToString(seconds) {
 
 function App() {
     const [ state, dispatch ] = useReducer(reducer, initial);
+    const [ isModal, setIsModal ] = useState(false);
     const contextProvider = { state, dispatch };
     const totalSeconds = state.times[state.activeTab];
     const elapsedSeconds = state.elapsed;
@@ -55,6 +60,8 @@ function App() {
                 actionRun();
         }
     };
+    const handleOpenModal = () => setIsModal(true);
+    const handleCloseModal = () => setIsModal(false);
 
     useEffect(() => {
         let title = null;
@@ -79,25 +86,33 @@ function App() {
 
     const className = classes({
         "app": true,
+        "app--modal": isModal,
         [`app--${ state.settings.font }`]: state.settings.font,
         [`app--${ state.settings.color }`]: state.settings.color
     });
 
     return (
         <AppContext.Provider value={ contextProvider }>
+            <SvgSource />
             <main className={ className }>
                 <h2 className="app__title">{ Text.TITLE }</h2>
-                
+
                 <Tabs items={ tabsItems }
                     active={ state.activeTab } />
-                
+
                 <Clock active={ state.activeTab }
                     total={ totalSeconds }
                     elapsed={ elapsedSeconds }
                     state={ state.clockState }
                     onAction={ handleClockAction } />
-                
-                <Button />
+
+                <Button icon={ true } onClick={ handleOpenModal }>
+                    <Use icon="settings" width="28" height="28" />
+                </Button>
+
+                <Modal opened={ isModal } onClose={ handleCloseModal }>
+                    <Settings onClose={ handleCloseModal } />
+                </Modal>
             </main>
         </AppContext.Provider>
     );
