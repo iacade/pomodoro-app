@@ -14,6 +14,7 @@
         padding: 15px;
         background: var(--c-gray);
         border-radius: 10px;
+        transition: 200ms;
     }
 
     &__field input {
@@ -33,5 +34,13 @@
         &-down {
             transform: rotateX(180deg);
         }
+    }
+
+    &:hover &__placeholder, &--focus &__placeholder {
+        opacity: .8;
+    }
+
+    &--focus &__field {
+        box-shadow: 0 5px 10px rgba(30, 33, 63, .2);
     }
 }
