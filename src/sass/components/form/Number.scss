@@ -22,6 +22,14 @@
         width: 100%;
         border: none;
         background: transparent;
+
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     }
 
     &__spinner {
@@ -51,5 +59,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        &__field {
+            width: 140px;
+        }
     }
 }

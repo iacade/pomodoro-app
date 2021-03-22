@@ -41,7 +41,7 @@ function Number(props) {
         <label className={ className }>
             <span className="x-number__placeholder">{ props.placeholder || props.name }</span>
             <div className="x-number__field">
-                <input type="text"
+                <input type="number"
                     name={ props.name }
                     value={ props.value }
                     onChange={ handleChange }
