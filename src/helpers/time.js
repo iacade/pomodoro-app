@@ -1,5 +1,4 @@
 const SEC_IN_MIN = 60;
-const SEC_IN_HOUR = 3600;
 
 export function minToSec(value) {
     return value * SEC_IN_MIN;
