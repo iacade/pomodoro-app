@@ -125,6 +125,9 @@ function Settings(props) {
                     </div>
                 </div>
             </div>
+            <div className="settings__button">
+                <Button text="Apply" onClick={ props.onApply } />
+            </div>
         </div>
     );
 }

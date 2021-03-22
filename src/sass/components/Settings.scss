@@ -1,4 +1,6 @@
 .settings {
+    position: relative;
+
     &__top {
         display: flex;
         justify-content: space-between;
@@ -17,5 +19,15 @@
         &:last-of-type {
             border-bottom: none;
         }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+
+        position: absolute;
+        left: 0;
+        bottom: -25px;
+        width: 100%;
     }
 }

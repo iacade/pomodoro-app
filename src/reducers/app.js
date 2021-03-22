@@ -8,9 +8,9 @@ const storage = new ConfigStorage()
         activeTab: new Validators.OneOf([ "pomodoro", "short", "long" ]),
         shakeAnim: new Validators.Boolean(),
         times: {
-            pomodoro: new Validators.Number({ min: 1, max: minToSec(60) }),
-            short: new Validators.Number({ min: 1, max: minToSec(60) }),
-            long: new Validators.Number({ min: 1, max: minToSec(60) }),
+            pomodoro: new Validators.Number({ min: 1, max: minToSec(59) }),
+            short: new Validators.Number({ min: 1, max: minToSec(59) }),
+            long: new Validators.Number({ min: 1, max: minToSec(59) }),
         },
         elapsed: new Validators.AlwaysFalse(),
         clockState: new Validators.AlwaysFalse(),
@@ -34,6 +34,7 @@ const initial = storage.fetch({
         color: "tomato"
     }
 });
+let savedState = null;
 
 const reducers = {
     "change-type": (state, action) => {
@@ -131,6 +132,18 @@ const reducers = {
         return {
             shakeAnim: false
         };
+    },
+    "save-state": (state) => {
+        savedState = state;
+
+        return false;
+    },
+    "restore-state": (_, action) => {
+        const restoredState = savedState;
+
+        savedState = null;
+
+        return action.apply ? null : restoredState;
     }
 };
 
@@ -138,7 +151,15 @@ function reducer(state, action) {
     const newState = reducers[action.type]?.(state, action);
 
     if (newState) {
-        return storage.save(Object.assign({}, state, newState));
+        const resultState = Object.assign({}, state, newState);
+
+        if (!savedState) {
+            // if settings is being adjusted
+            // we aren't gonna to save state
+            storage.save(resultState);
+        }
+
+        return resultState;
     }
     else {
         return state;

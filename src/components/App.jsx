@@ -60,8 +60,15 @@ function App() {
                 actionRun();
         }
     };
-    const handleOpenModal = () => setIsModal(true);
-    const handleCloseModal = () => setIsModal(false);
+    const handleOpenModal = () => {
+        dispatch({ type: "save-state" });
+        setIsModal(true);
+    };
+    const handleCloseModal = (applyChanges) => {
+        dispatch({ type: "restore-state", apply: applyChanges });
+
+        setIsModal(false);
+    };
 
     useEffect(() => {
         let title = null;
@@ -114,8 +121,8 @@ function App() {
                     <Use icon="settings" width="28" height="28" />
                 </Button>
 
-                <Modal opened={ isModal } onClose={ handleCloseModal }>
-                    <Settings onClose={ handleCloseModal } />
+                <Modal opened={ isModal } onClose={ () => handleCloseModal(false) }>
+                    <Settings onClose={ () => handleCloseModal(false) } onApply={ () => handleCloseModal(true) } />
                 </Modal>
             </main>
         </AppContext.Provider>

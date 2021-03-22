@@ -5,6 +5,7 @@ function Button(props) {
     const className = classes({
         "x-button": true,
         "x-button--icon": props.icon,
+        "x-button--text": props.text,
         [props.className]: props.className
     });
 
@@ -13,6 +14,7 @@ function Button(props) {
             onFocus={ props.onFocus }
             onBlur={ props.onBlur }
             onClick={ props.onClick }>
+            <span className="x-button__mask"></span>
             <div className="x-button__content">
                 { props.children || props.text }
             </div>

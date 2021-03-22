@@ -21,6 +21,12 @@ $colors: (
     'purple': '--c-purple'
 );
 
+$textColors: (
+    'tomato': '--c-white',
+    'cyan': '--c-dark',
+    'purple': '--c-white'
+);
+
 .app {
     background: var(--color-bg);
 
@@ -46,6 +52,7 @@ $colors: (
     @each $key, $color in $colors {
         &--#{ $key } {
             --theme-color: var(#{ $color });
+            --text-color: var(#{ map-get($textColors, $key) });
         }
     }
 }

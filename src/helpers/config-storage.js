@@ -1,3 +1,4 @@
+import { deepAsign } from "./object";
 import { ValidatorBase } from "./validator";
 
 export default class ConfigStorage {
@@ -52,7 +53,7 @@ export default class ConfigStorage {
                 }
             }
 
-            return Object.assign(defaultSettings, settings);
+            return deepAsign(defaultSettings, settings);
         }
         catch (err) {
             console.error(err);
