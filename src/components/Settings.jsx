@@ -18,7 +18,7 @@ const numberInputs = [{
 }, {
     name: "long",
     text: Text.LONG_BREAK,
-    className: "w-100"
+    className: "w-100 mb-2-m"
 }];
 
 const fontRadios = [{
@@ -67,7 +67,7 @@ function Settings(props) {
     };
     const renderNumber = (name, text, className) => (
         <Number key={ name }
-            className={ className || "w-100 mr-4" }
+            className={ className || "w-100 mr-4 mb-2-m" }
             name={ name }
             value={ secToMin(state.times[name]) }
             onChange={ handleTimeChange }
@@ -108,19 +108,19 @@ function Settings(props) {
             <div className="settings__content">
                 <div className="settings__item">
                     <h4 className="mb-4">{ Text.SETTINGS_TIME }</h4>
-                    <div className="flex">
+                    <div className="flex-on-desktop">
                         { numberInputs.map(({ name, text, className }) => renderNumber(name, text, className)) }
                     </div>
                 </div>
-                <div className="settings__item flex align-between valign-center">
+                <div className="settings__item flex-on-desktop align-between valign-center">
                     <h4>{ Text.SETTINGS_FONT }</h4>
-                    <div className="flex">
+                    <div className="flex align-center">
                         { fontRadios.map(({ font, className }) => renderFontRadio(font, className)) }
                     </div>
                 </div>
-                <div className="settings__item flex align-between valign-center">
+                <div className="settings__item flex-on-desktop align-between valign-center">
                     <h4>{ Text.SETTINGS_COLOR }</h4>
-                    <div className="flex">
+                    <div className="flex align-center">
                         { colorRadios.map(({ color, className }) => renderColorRadio(color, className)) }
                     </div>
                 </div>

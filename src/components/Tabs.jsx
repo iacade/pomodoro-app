@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useRef, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import AppContext from "../context/AppContext";
 import { classes } from "../helpers/classes";
@@ -24,7 +24,7 @@ function Tabs(props) {
     const [ maskLeft, setMaskLeft ] = useState(0);
     const [ maskWidth, setMaskWidth ] = useState(0);
 
-    useLayoutEffect(() => {
+    const alignMaskItem = () => {
         const section = sectionRef.current;
 
         if (!section || !props.active) {
@@ -37,7 +37,14 @@ function Tabs(props) {
 
         setMaskLeft(left - offsetLeft);
         setMaskWidth(width);
-    }, [ props.active ]);
+    };
+
+    useLayoutEffect(alignMaskItem, [ props.active ]);
+    useEffect(() => {
+        window.addEventListener("resize", alignMaskItem);
+
+        return () => window.removeEventListener("resize", alignMaskItem);
+    }, []);
 
     const handleClick = ({ target }) => {
         const item = target.closest(".tabs__item");

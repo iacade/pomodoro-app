@@ -116,3 +116,13 @@ $textColors: (
         transform: none;
     }
 }
+
+@media (max-width: 500px) {
+    .app {
+        font-size: 12px;
+
+        &__title {
+            margin: 30px 0 40px 0;
+        }
+    }
+}

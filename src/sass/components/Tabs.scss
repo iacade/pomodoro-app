@@ -13,7 +13,7 @@
         border: 1px solid transparent;
         background: transparent;
         padding: 15px 0;
-        min-width: 120px;
+        width: 120px;
         border-radius: 26px;
 
         position: relative;
@@ -42,4 +42,16 @@
     background-color: var(--theme-color);
     border-radius: 26px;
     transition: 300ms left cubic-bezier(.67, .22, .05, 1.18), 300ms width;
+}
+
+@media (max-width: 500px) {
+    .tabs {
+        li {
+            margin-right: 0;
+        }
+
+        &__item {
+            width: 100px;
+        }
+    }
 }

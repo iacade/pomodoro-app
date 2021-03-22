@@ -8,6 +8,8 @@
 
     &__old {
         position: absolute;
+        user-select: none;
+        pointer-events: none;
     }
 
     &--updated &__new {

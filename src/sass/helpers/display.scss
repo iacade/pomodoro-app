@@ -17,3 +17,13 @@
 .valign-center {
     align-items: center;
 }
+
+.flex-on-desktop {
+    display: flex;
+}
+
+@media (max-width: 500px) {
+    .flex-on-desktop {
+        display: block;
+    }
+}
