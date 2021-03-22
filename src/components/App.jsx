@@ -23,6 +23,7 @@ const tabsItems = [{
     key: "long",
     text: Text.LONG_BREAK
 }];
+const audio = new Audio("/audio/audio.mp3");
 
 function timeToString(seconds) {
     const left = format(seconds);
@@ -95,6 +96,26 @@ function App() {
 
         document.title = title;
     });
+
+    useEffect(() => {
+        if (state.clockState === "finish") {
+            audio.currentTime = 0;
+            audio.play();
+        }
+        else {
+            audio.pause();
+        }
+    }, [ state.clockState ]);
+
+    useEffect(() => {
+        const handleWindowFocus = () => {
+            audio.pause();
+        };
+
+        window.onfocus = handleWindowFocus;
+
+        return () => window.onfocus = null;
+    }, []);
 
     const className = classes({
         "app": true,
