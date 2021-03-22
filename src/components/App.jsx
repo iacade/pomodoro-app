@@ -95,7 +95,9 @@ function App() {
         <AppContext.Provider value={ contextProvider }>
             <SvgSource />
             <main className={ className }>
-                <h2 className="app__title">{ Text.TITLE }</h2>
+                <h2 className="app__title">
+                    <img src="/images/logo.svg" alt={ Text.TITLE } />
+                </h2>
 
                 <Tabs items={ tabsItems }
                     active={ state.activeTab } />
