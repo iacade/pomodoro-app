@@ -42,7 +42,7 @@ function Tabs(props) {
     useLayoutEffect(alignMaskItem, [ props.active ]);
     useEffect(() => {
         window.addEventListener("resize", alignMaskItem);
-
+        
         return () => window.removeEventListener("resize", alignMaskItem);
     }, []);
 
