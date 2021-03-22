@@ -1,0 +1,35 @@
+.swipe-text {
+    position: relative;
+    display: flex;
+
+    &__old, &__new {
+        display: block;
+    }
+
+    &__old {
+        position: absolute;
+    }
+
+    &--updated &__new {
+        animation: swipe-from-bottom-anim 300ms forwards;
+    }
+
+    &--updated &__old {
+        animation: swipe-to-top-anim 300ms forwards;
+    }
+}
+
+@keyframes swipe-to-top-anim {
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes swipe-from-bottom-anim {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}

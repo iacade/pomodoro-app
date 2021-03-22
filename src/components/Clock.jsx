@@ -3,6 +3,7 @@ import { calcArcAngles, describeArc } from "../helpers/geometry";
 import { format, withZeroLead } from "../helpers/time";
 import useTransition from "../hooks/useTransition";
 import { classes } from "../helpers/classes";
+import SwipeText from "./SwipeText";
 
 const CLOCK_ARC = {
     CENTER_X: 180,
@@ -65,7 +66,9 @@ function Clock(props) {
                 </h1>
                 <button className="clock__state" onClick={ props.onAction }>
                     <h3 className={ textClassName }
-                        onAnimationEnd={ props.onEndShake }>{ Text.CLOCK_BUTTON[props.state] }</h3>
+                        onAnimationEnd={ props.onEndShake }>
+                        <SwipeText text={ Text.CLOCK_BUTTON[props.state] } />
+                    </h3>
                 </button>
             </div>
         </section>
