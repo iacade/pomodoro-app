@@ -11,7 +11,7 @@ export function secToMin(value) {
 
 export function format(secondsCount) {
     const minutes = Math.floor(secondsCount / SEC_IN_MIN);
-    const seconds = secondsCount % SEC_IN_HOUR % SEC_IN_MIN;
+    const seconds = secondsCount % SEC_IN_MIN;
 
     return { minutes, seconds };
 }
