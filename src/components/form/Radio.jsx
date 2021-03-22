@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { classes } from "../../helpers/classes";
 
 function Radio(props) {
@@ -26,5 +27,14 @@ function Radio(props) {
         </label>
     );
 }
+
+Radio.propTypes = {
+    checked: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    value: PropTypes.string,
+    className: PropTypes.string,
+    children: PropTypes.node
+};
 
 export default Radio;

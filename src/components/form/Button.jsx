@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { classes } from "../../helpers/classes";
 
 function Button(props) {
@@ -18,5 +19,15 @@ function Button(props) {
         </button>
     );
 }
+
+Button.propTypes = {
+    children: PropTypes.node,
+    text: PropTypes.string,
+    icon: PropTypes.bool,
+    className: PropTypes.string,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onClick: PropTypes.func
+};
 
 export default Button;

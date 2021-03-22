@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { classes } from "../helpers/classes";
 import { useSwipe } from "../hooks/useSwipe";
 
@@ -44,5 +45,9 @@ function SwipeText(props) {
         </span>
     );
 }
+
+SwipeText.propTypes = {
+    text: PropTypes.string.isRequired
+};
 
 export default SwipeText;

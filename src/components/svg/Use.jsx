@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Use(props) {
     const { icon, ...restProps } = props;
     const href = `#${ icon }-icon`;
@@ -8,5 +10,9 @@ function Use(props) {
         </svg>
     );
 }
+
+Use.propTypes = {
+    icon: PropTypes.string.isRequired
+};
 
 export default Use;

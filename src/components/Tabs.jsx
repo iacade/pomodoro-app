@@ -1,4 +1,5 @@
 import { useContext, useLayoutEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import AppContext from "../context/AppContext";
 import { classes } from "../helpers/classes";
 
@@ -7,7 +8,7 @@ function TabsItem(props) {
         "tabs__item": true,
         "tabs__item--active": props.active
     });
-    
+
     return (
         <li>
             <button className={ className } data-key={ props.name }>
@@ -77,5 +78,13 @@ function Tabs(props) {
         </section>
     );
 }
+
+Tabs.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired
+    })).isRequired,
+    active: PropTypes.string.isRequired
+};
 
 export default Tabs;

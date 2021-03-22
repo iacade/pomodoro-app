@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { classes } from "../helpers/classes";
 
 function Modal(props) {
@@ -19,5 +20,11 @@ function Modal(props) {
         </div>
     );
 }
+
+Modal.propTypes = {
+    children: PropTypes.node,
+    opened: PropTypes.bool,
+    onClose: PropTypes.func
+};
 
 export default Modal;

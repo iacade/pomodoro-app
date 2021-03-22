@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Text from "../text/Text";
 import { calcArcAngles, describeArc } from "../helpers/geometry";
 import { format, withZeroLead } from "../helpers/time";
@@ -74,5 +75,14 @@ function Clock(props) {
         </section>
     );
 }
+
+Clock.propTypes = {
+    state: PropTypes.oneOf([ "init", "run", "stop", "finish" ]).isRequired,
+    total: PropTypes.number.isRequired,
+    elapsed: PropTypes.number.isRequired,
+    onAction: PropTypes.func.isRequired,
+    shakeAnim: PropTypes.bool,
+    onEndShake: PropTypes.func
+};
 
 export default Clock;

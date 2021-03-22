@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import Text from "../text/Text";
 import Button from "./form/Button";
 import Number from "./form/Number";
@@ -127,5 +128,9 @@ function Settings(props) {
         </div>
     );
 }
+
+Settings.propTypes = {
+    onClose: PropTypes.func
+};
 
 export default Settings;
