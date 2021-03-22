@@ -89,7 +89,17 @@ const reducers = {
             return false;
         }
 
+        let elapsed = state.elapsed;
+        let clockState = state.clockState;
+
+        if (name === state.activeTab && elapsed > value) {
+            elapsed = value;
+            clockState = "finish";
+        }
+
         return {
+            clockState: clockState,
+            elapsed: elapsed,
             times: {
                 ...state.times,
                 [name]: value
@@ -122,6 +132,15 @@ const reducers = {
                 ...state.settings,
                 color: value
             }
+        };
+    },
+    "set-shake-anim": (state) => {
+        if (state.shakeAnim) {
+            return false;
+        }
+
+        return {
+            shakeAnim: true
         };
     },
     "clear-shake-anim": (state) => {

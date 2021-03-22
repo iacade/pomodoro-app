@@ -61,8 +61,13 @@ function App() {
         }
     };
     const handleOpenModal = () => {
-        dispatch({ type: "save-state" });
-        setIsModal(true);
+        if (state.clockState !== "run") {
+            dispatch({ type: "save-state" });
+            setIsModal(true);
+        }
+        else {
+            dispatch({ type: "set-shake-anim" });
+        }
     };
     const handleCloseModal = (applyChanges) => {
         dispatch({ type: "restore-state", apply: applyChanges });
