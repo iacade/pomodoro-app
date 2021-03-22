@@ -108,14 +108,21 @@ function App() {
     }, [ state.clockState ]);
 
     useEffect(() => {
-        const handleWindowFocus = () => {
-            audio.pause();
-        };
+        const handleWindowFocus = () => audio.pause();
 
         window.onfocus = handleWindowFocus;
 
         return () => window.onfocus = null;
     }, []);
+
+    useEffect(() => {
+        if (state.clockState === "run") {
+            window.onbeforeunload = () => "Timer will be unset. Are you ready to sacrifice that?";
+        }
+        else {
+            window.onbeforeunload = null;
+        }
+    }, [ state.clockState ]);
 
     const className = classes({
         "app": true,
