@@ -8,9 +8,9 @@ const storage = new ConfigStorage()
         activeTab: new Validators.OneOf([ "pomodoro", "short", "long" ]),
         shakeAnim: new Validators.Boolean(),
         times: {
-            pomodoro: new Validators.Number({ min: 1, max: minToSec(59) }),
-            short: new Validators.Number({ min: 1, max: minToSec(59) }),
-            long: new Validators.Number({ min: 1, max: minToSec(59) }),
+            pomodoro: new Validators.Number({ min: 1, max: minToSec(99) }),
+            short: new Validators.Number({ min: 1, max: minToSec(99) }),
+            long: new Validators.Number({ min: 1, max: minToSec(99) }),
         },
         elapsed: new Validators.AlwaysFalse(),
         clockState: new Validators.AlwaysFalse(),

@@ -10,11 +10,10 @@ export function secToMin(value) {
 }
 
 export function format(secondsCount) {
-    const hours = Math.floor(secondsCount / SEC_IN_HOUR);
-    const minutes = Math.floor((secondsCount % SEC_IN_HOUR) / SEC_IN_MIN);
+    const minutes = Math.floor(secondsCount / SEC_IN_MIN);
     const seconds = secondsCount % SEC_IN_HOUR % SEC_IN_MIN;
 
-    return { hours, minutes, seconds };
+    return { minutes, seconds };
 }
 
 export function withZeroLead(value) {
