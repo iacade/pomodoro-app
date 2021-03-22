@@ -53,6 +53,9 @@ function Clock(props) {
         "shake-anim": props.shakeAnim
     });
 
+    // we can use SwipeText for minutes and seconds, but it seems
+    // to be pretty only with monospace fonts
+    //
     return (
         <section className="clock">
             <div className="clock__content">
@@ -63,7 +66,7 @@ function Clock(props) {
                     </svg>
                 </span>
                 <h1 className="clock__timer">
-                    { leftMin + ":" + leftSec }
+                    { leftMin }:{ leftSec }
                 </h1>
                 <button className="clock__state" onClick={ props.onAction }>
                     <h3 className={ textClassName }

@@ -25,6 +25,9 @@
     }
 
     &__timer {
+        // it's a pity that Kumbh Sans and Roboto Slab
+        // don't support tabular figures
+        //
         font-feature-settings: "tnum";
         position: relative;
         z-index: 2;
