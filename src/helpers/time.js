@@ -22,5 +22,5 @@ export function withZeroLead(value) {
         return "0" + value;
     }
 
-    return value;
+    return value.toString();
 }
