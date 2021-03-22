@@ -73,7 +73,7 @@ function Settings(props) {
             onChange={ handleTimeChange }
             placeholder={ text }
             min={ 1 }
-            max={ 60 } />
+            max={ 59 } />
     );
     const renderFontRadio = (font, className) => (
         <Radio key={ font }
