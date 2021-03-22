@@ -1,7 +1,25 @@
 import { minToSec } from "../helpers/time";
 import Timer from "../helpers/timer";
+import ConfigStorage from "../helpers/config-storage";
+import * as Validators from "../helpers/validator";
 
-const initial = {
+const storage = new ConfigStorage()
+    .addValidator({
+        activeTab: new Validators.OneOf([ "pomodoro", "short", "long" ]),
+        shakeAnim: new Validators.Boolean(),
+        times: {
+            pomodoro: new Validators.Number({ min: 1, max: minToSec(60) }),
+            short: new Validators.Number({ min: 1, max: minToSec(60) }),
+            long: new Validators.Number({ min: 1, max: minToSec(60) }),
+        },
+        elapsed: new Validators.AlwaysFalse(),
+        clockState: new Validators.AlwaysFalse(),
+        settings: {
+            font: new Validators.OneOf([ "kumbh-sans", "roboto-slab", "space-mono" ]),
+            color: new Validators.OneOf([ "tomato", "cyan", "purple" ])
+        }
+    });
+const initial = storage.fetch({
     activeTab: "pomodoro",
     shakeAnim: false,
     times: {
@@ -10,12 +28,12 @@ const initial = {
         long: minToSec(15)
     },
     elapsed: 0,
-    clockState: "init", // one of: init, run, stop, finish
+    clockState: "init",
     settings: {
         font: "kumbh-sans",
         color: "tomato"
     }
-};
+});
 
 const reducers = {
     "change-type": (state, action) => {
@@ -120,7 +138,7 @@ function reducer(state, action) {
     const newState = reducers[action.type]?.(state, action);
 
     if (newState) {
-        return Object.assign({}, state, newState);
+        return storage.save(Object.assign({}, state, newState));
     }
     else {
         return state;
